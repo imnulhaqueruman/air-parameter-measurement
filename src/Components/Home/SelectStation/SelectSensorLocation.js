@@ -2,14 +2,15 @@ import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../../App';
 import DateTimePicker from 'react-datetime-picker';
 import { Link, useHistory } from 'react-router-dom';
+import Nav from '../../Nav/Nav';
 
 const SelectSensorLocation = () => {
     const [option,setOption] = useState('Type Your location')
     const[locations,setLocations] = useState([])
-    const[parameter,setParameter] = useState()
+    //const[parameter,setParameter] = useState()
     const [date, setDate] = useState(new Date());
     const history = useHistory()
-    const[location,setLocation,value,setValue,dateTime,setDateTime] = useContext(UserContext)
+    const[location,setLocation,dateTime,setDateTime] = useContext(UserContext)
    
     useEffect(() =>{
         fetch('https://api.openaq.org/v1/measurements?city=London&locations')
@@ -26,15 +27,15 @@ const SelectSensorLocation = () => {
     const handleSubmit = (e) =>{ 
         setDateTime(date)
         setLocation(option)
-        setValue(parameter)
-        console.log(dateTime,location,value)  
+        //setValue(parameter)
+        console.log(dateTime,location)  
       
     }
-    const handleParameter = (e) =>{
+    /*const handleParameter = (e) =>{
         const value = e.target.value;
         setParameter(value)
        
-    }
+    }*/
     const handleDateTime = () =>{
         //const todayDate= today()
        
@@ -47,6 +48,9 @@ const SelectSensorLocation = () => {
     return (
         <div className="container mb-5 my-5">
             <div className="row d-flex">
+                <div className="mb-5">
+                    <Nav></Nav>
+                </div>
                <div className="col-md-4">
                   <form>
                       <label className="px-3 text-primary form-label">Select The city:</label>
@@ -68,19 +72,10 @@ const SelectSensorLocation = () => {
                             </select>
                          
                          </div>
-                         <div className='col-md-5 mx-3 '>
-                             <label className="px-3 form-label">
-                                 Select Parameter:
-                              </label>
-                                 <select className="form-select" value={parameter} onChange={handleParameter}>
-                                        <option value="no">no</option>
-                                        <option value="no2">no2</option>
-                                        <option value="o3">o3</option>
-                                 </select>     
-                         </div>
+                        
                         
                          <Link to="/value">
-                             <input className="btn btn-primary rounded-pill" type="submit" value="submit" onClick={handleSubmit}/> 
+                             <input className="btn btn-success rounded-pill" type="submit" value="submit" onClick={handleSubmit}/> 
                           </Link>  
                     </form>
                        <div className='my-3 mx-3'>

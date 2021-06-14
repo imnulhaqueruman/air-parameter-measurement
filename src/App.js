@@ -12,18 +12,18 @@ import {
 export const UserContext = createContext()
 function App() {
   const[location, setLocation] = useState()
-  const[value,setValue] = useState()
+  //const[value,setValue] = useState()
   const[dateTime,setDateTime] = useState()
 
   return (
-    <UserContext.Provider value={[location,setLocation,value,setValue,dateTime,setDateTime]}>
+    <UserContext.Provider value={[location,setLocation,dateTime,setDateTime]}>
       <Router>
         <Switch>
           <Route path="/location">
             <SelectSensorLocation></SelectSensorLocation>
           </Route>
           <Route path="/value">
-           <ValueOfLocation location={location} value={value} date={dateTime}></ValueOfLocation>
+           <ValueOfLocation location={location}  date={dateTime}></ValueOfLocation>
           </Route>
           <Route exact path="/">
             <Home></Home>
