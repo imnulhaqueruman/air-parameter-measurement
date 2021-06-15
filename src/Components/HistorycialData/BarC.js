@@ -1,6 +1,7 @@
 import React from 'react';
 import { Bar, Bubble } from 'react-chartjs-2';
 const BarC = ({data,location}) => {
+  console.log(data)
     return (
         <div>
             <Bar

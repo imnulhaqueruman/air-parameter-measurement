@@ -3,8 +3,8 @@ import { useEffect } from 'react';
 import Nav from '../Nav/Nav';
 import BarC from '../../Components/HistorycialData/BarC';
 const BarChart = ({historyDateFrom,historyDateTo,location}) => {
-    //console.log('dateForm',historyDateFrom)
-    //console.log('dateTo',historyDateTo)
+    console.log('dateForm',historyDateFrom)
+    console.log('dateTo',historyDateTo)
     const dateFrom = historyDateFrom;
     const dateTo= historyDateTo
     const From = () =>{
@@ -12,6 +12,7 @@ const BarChart = ({historyDateFrom,historyDateTo,location}) => {
         const m = (dateFrom.getUTCMonth() +1);
         const d = dateFrom.getUTCDate();
         const Date_from  = y+'-'+((m <10)?'0':"")+m+'-'+((d<10)?'0':"")+d;
+        console.log(Date_from)
         return Date_from;
     }
     const To = () =>{
@@ -19,16 +20,21 @@ const BarChart = ({historyDateFrom,historyDateTo,location}) => {
         const m = (dateTo.getUTCMonth() +1);
         const d = dateTo.getUTCDate();
         const Date_To  = y+'-'+((m <10)?'0':"")+m+'-'+((d<10)?'0':"")+d;
+        console.log(Date_To)
         return Date_To;
     }
-   // console.log(props)
+   //console.log(props)
    const[data,setData] = useState([])
-   const url =`https://api.openaq.org/v2/measurements?city=London&location=${location}&parameter=no2&parameter=o3&date_from=${From()}&date_to=${To()}`;
+   const url =`https://api.openaq.org/v1/measurements?city=London&location=${location}&parameter=no2&parameter=o3&date_from=${From()}&date_to=${To()}`;
    useEffect(() =>{
        fetch(url)
        .then(res =>res.json())
-       .then(data => setData(data.results))
-   },[])
+       .then(data => {
+        setData(data.results)
+        console.log(data.results)}
+       
+       )
+   },[url])
     return (
         <div>
             <div>
