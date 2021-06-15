@@ -28,10 +28,11 @@ const ValueOfLocation = ({location, date}) => {
      }*/
     // take current Time from date props 
     const h = date.getUTCHours()
+    console.log(h)
     const mi = date.getUTCMinutes()
     const s = date.getUTCSeconds()
     const Time = +((h<10)?(h-1):(h-2))+":" + "00" + ":" + "00";
-    const time = +((h>10)&&(h-3))+":" + "00" + ":" + "00";
+    const time = +((h>10)&&(h-4))+":" + "00" + ":" + "00";
     console.log('Time',Time)
     console.log(time)
 
@@ -44,7 +45,7 @@ const ValueOfLocation = ({location, date}) => {
    
   
 
-    const url =`https://api.openaq.org/v2/measurements?city=London&location=${location}&parameter=no2&parameter=o3&date_form=${todayDate()}`;
+    const url =`https://api.openaq.org/v2/measurements?city=London&location=${location}&parameter=no2&parameter=o3&date_from=${todayDate()}`;
     //console.log(url)
     useEffect(() =>{
         fetch(url)
@@ -74,8 +75,9 @@ const ValueOfLocation = ({location, date}) => {
                            <li className="list-group-item bg-default">{result.parameter}</li>
                            <li className="list-group-item bg-default">{result.value} {result.unit}</li>
                          </ul>
-                       </div>
-                     ))
+                       </div> 
+
+                     )) 
                    }
                </div>
 

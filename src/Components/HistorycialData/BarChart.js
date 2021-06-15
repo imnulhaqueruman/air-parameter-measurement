@@ -23,7 +23,7 @@ const BarChart = ({historyDateFrom,historyDateTo,location}) => {
     }
    // console.log(props)
    const[data,setData] = useState([])
-   const url =`https://api.openaq.org/v2/measurements?city=London&location=${location}&parameter=no2&parameter=o3&date_form=${From()}&date_to=${To()}`;
+   const url =`https://api.openaq.org/v2/measurements?city=London&location=${location}&parameter=no2&parameter=o3&date_from=${From()}&date_to=${To()}`;
    useEffect(() =>{
        fetch(url)
        .then(res =>res.json())
