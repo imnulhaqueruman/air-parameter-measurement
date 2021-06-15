@@ -8,8 +8,9 @@ const Home = () => {
                 <h1 className="text-center text-white  py-5">Monitor the Air Quality parameters at various locations in
                 London</h1>
                 <Link to="/location"><button className="btn btn-secondary">SelectSensorLocation</button></Link>
+                
             </div>
-           
+          
         </div>
     );
 };
