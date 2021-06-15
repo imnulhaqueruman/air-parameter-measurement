@@ -32,12 +32,12 @@ const ValueOfLocation = ({location, date}) => {
     const mi = date.getUTCMinutes()
     const s = date.getUTCSeconds()
     const Time = +((h<10)?(h-1):(h-2))+":" + "00" + ":" + "00";
-    const time = +((h>10)&&(h-4))+":" + "00" + ":" + "00";
+    const time = +((h>10)&&(h-3))+":" + "00" + ":" + "00";
     console.log('Time',Time)
     console.log(time)
 
     
-    const dateTime= todayDate() + "T" +((h-3<10)?'0':'')+ ((h<10)?Time:time) +'+' +'01:00';
+    const dateTime= todayDate() + "T" +((parseInt(time)<10)?'0':'')+ ((h<10)?Time:time)+'+' +'01:00';
     console.log(dateTime)
    //console.log(location,date,todayDate)
     
@@ -64,10 +64,15 @@ const ValueOfLocation = ({location, date}) => {
                    <Nav></Nav>
                    
                </div>
+               {!results.length &&
+                   <div className="spinner-border text-primary" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </div>
+                }
                <div>
                    {
                      results.map((result) => (
-                         (result.date.local === dateTime) && <div className="card mb-5 bg-secondary bg-gradient" style={{width:'25rem'}}>
+                         (result.date.local === dateTime) ? <div className="card mb-5 bg-secondary bg-gradient" style={{width:'25rem'}}>
                              <div class="card-header">
                                     {result.location} 
                              </div>
@@ -75,7 +80,9 @@ const ValueOfLocation = ({location, date}) => {
                            <li className="list-group-item bg-default">{result.parameter}</li>
                            <li className="list-group-item bg-default">{result.value} {result.unit}</li>
                          </ul>
-                       </div> 
+                       </div> : <div className="spinner-border text-primary" role="status">
+                                <span className="visually-hidden">Loading...</span>
+                                </div>
 
                      )) 
                    }
