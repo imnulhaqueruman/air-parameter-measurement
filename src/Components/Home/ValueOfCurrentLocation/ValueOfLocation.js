@@ -31,12 +31,12 @@ const ValueOfLocation = ({location, date}) => {
     const mi = date.getUTCMinutes()
     const s = date.getUTCSeconds()
     const Time = +((h<10)?(h-1):(h-2))+":" + "00" + ":" + "00";
-    const time = +h+":" + "00" + ":" + "00";
+    const time = +((h>10)&&(h-3))+":" + "00" + ":" + "00";
     console.log('Time',Time)
     console.log(time)
 
     
-    const dateTime= todayDate() + "T" +((h<=10)?'0':'')+ Time +'+' +'01:00';
+    const dateTime= todayDate() + "T" +((h-3<10)?'0':'')+ ((h<10)?Time:time) +'+' +'01:00';
     console.log(dateTime)
    //console.log(location,date,todayDate)
     

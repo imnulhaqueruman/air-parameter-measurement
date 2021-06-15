@@ -10,7 +10,7 @@ const Nav = () => {
                     <button className="btn btn-primary ">Home</button>
                 </Link>
             </li>
-            {window.location.href === 'https://air-parameter-measurement.web.app/value'&& <li className="nav-item my-2">
+            {window.location.href === 'http://localhost:3000/value'&& <li className="nav-item my-2">
                <Link to="/barChat">
                        <button className="btn btn-warning">checkHistory</button>
                 </Link>
