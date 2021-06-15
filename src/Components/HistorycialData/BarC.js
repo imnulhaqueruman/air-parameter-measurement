@@ -10,8 +10,8 @@ const BarC = ({data,location}) => {
                         {
                         label: `Historical Data Of No2, O3 at ${location}`,
                         data: data.map(value => value.value),
-                        backgroundColor: '#2345FF',
-                        borderColor: '#2345FF',
+                        backgroundColor: '#FF6394',
+                        borderColor: '#FF6394',
                         borderWidth:1
                         },
                     ],

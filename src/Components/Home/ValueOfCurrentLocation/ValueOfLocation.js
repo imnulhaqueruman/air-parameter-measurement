@@ -6,6 +6,7 @@ import './ValueOfLocation.css';
 
 const ValueOfLocation = ({location, date}) => {
     console.log('date',date)
+    // For taking the Date from date props i called a todayDate arrow function
     const todayDate = () =>{
         const y= date.getUTCFullYear();
         const m = (date.getUTCMonth() +1);
@@ -25,11 +26,13 @@ const ValueOfLocation = ({location, date}) => {
         console.log(time)
         return time;
      }*/
+    // take current Time from date props 
     const h = date.getUTCHours()
     const mi = date.getUTCMinutes()
     const s = date.getUTCSeconds()
     const Time = +h-1+":" + "00" + ":" + "00";
     console.log('Time',Time)
+
     
     const dateTime= todayDate() + "T" +((h<10)?'0':'')+ Time +'+' +'01:00';
     console.log(dateTime)
@@ -48,7 +51,7 @@ const ValueOfLocation = ({location, date}) => {
            setResults(data.results)
            console.log('apiDate', data.results[0].date.local)
     })
-    },[location,date])
+    },[location,url,date])
 
    
     return (

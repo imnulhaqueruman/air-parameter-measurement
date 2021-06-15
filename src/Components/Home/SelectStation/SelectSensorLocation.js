@@ -3,15 +3,16 @@ import { UserContext } from '../../../App';
 import DateTimePicker from 'react-datetime-picker';
 import { Link} from 'react-router-dom';
 import Nav from '../../Nav/Nav';
+import { Slide } from 'react-awesome-reveal';
 
 const SelectSensorLocation = () => {
     const [option,setOption] = useState('Type Your location')
     const[locations,setLocations] = useState([])
-    //const[parameter,setParameter] = useState()
+  
     const [date, setDate] = useState(new Date());
     const[dateFrom,setDateFrom] = useState(new Date())
     const[dateTo,setDateTo] = useState(new Date())
-    //const history = useHistory()
+    
     const[location,setLocation,dateTime,setDateTime,historyDateFrom,setHistoryDateFrom,historyDateTo,setHistoryDateTo] = useContext(UserContext)
    
     useEffect(() =>{
@@ -20,7 +21,7 @@ const SelectSensorLocation = () => {
         .then(data => setLocations(data.results))
     },[])
 
-    //console.log(locations)
+   
     const handleChange=(e) =>{
         const value = e.target.value;
         setOption(value)
@@ -96,8 +97,13 @@ const SelectSensorLocation = () => {
                 </div>
                 
             </div>
-            <div className='col-md-5 my-3 pt-3'>
-                    <label className="text-secondary mx-1">Pick the Time of History : </label>
+            <div className="my-5">
+                <Slide triggerOnce>
+                    <h3>For Checking the historical data pick the time</h3>
+                </Slide>
+            </div>
+            <div className='col-md-5 my-5 py-5 pt-3'>
+                    <label className="text-secondary mx-1">Type Date From and click cross  : </label>
                                 <DateTimePicker
                                     onChange={handleDateFrom}
                                     value={dateFrom}
@@ -105,7 +111,7 @@ const SelectSensorLocation = () => {
                                 />
             </div>
             <div className='col-md-5 my-3 pt-3'>
-                    <label className="text-secondary mx-1">Pick the Time of History : </label>
+                    <label className="text-secondary mx-1">Type Date To and click cross : </label>
                                 <DateTimePicker
                                     onChange={handleDateTo}
                                     value={dateTo}
